@@ -5,11 +5,11 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
-import BlinkingStars from "./component/blinking_stars.jsx";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { Navbar } from "./component/navbar.jsx";
 import { Footer } from "./component/footer";
+import BlinkingStars from "./component/blinking_stars.jsx";
 
 //create your first component
 const Layout = () => {
