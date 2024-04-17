@@ -32,7 +32,15 @@ module.exports = {
             options: { name: '[name].[ext]' }
           }
         }, //for images
-        { test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, use: ['file-loader'] } //for fonts
+        { test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, use: ['file-loader'] }, //for fonts
+        {
+          test: /\.scss$/, // Matches files ending with .scss
+          use: [
+            'style-loader', // Injects styles into the DOM (for development)
+            'css-loader', // Converts CSS to CommonJS modules
+            'sass-loader' // Compiles SCSS to CSS
+          ]
+        }
     ]
   },
   resolve: {
