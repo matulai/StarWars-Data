@@ -1,0 +1,111 @@
+import React, { useState, useContext, useEffect } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CategoryCharacters from "../../img/categories/characters.png";
+import CategoryFilms from "../../img/categories/films.png";
+import CategorySpecies from "../../img/categories/species.png";
+import CategoryStarships from "../../img/categories/starships.png";
+import CategoryVehicles from "../../img/categories/vehicles.png";
+import CategoryPlanets from "../../img/categories/planets.png";
+import Card from "./card.jsx";
+import { Context } from "../store/appContext";
+
+const Carousel = (props) => {
+  const { store } = useContext(Context);
+  const [currentPageData, setCurrentPageData] = useState([]);
+
+  useEffect(() => {
+    const currentPageNumber = store.currentPage[props.category];
+    setCurrentPageData(categoryList[props.category][currentPageNumber] || []);
+  }, [
+    store.charactersList,
+    store.filmsList,
+    store.speciesList,
+    store.vehiclesList,
+    store.starshipsList,
+    store.planetsList,
+  ]);
+
+  const categoryTitle = {
+    characters: CategoryCharacters,
+    films: CategoryFilms,
+    species: CategorySpecies,
+    starships: CategoryStarships,
+    vehicles: CategoryVehicles,
+    planets: CategoryPlanets,
+  };
+
+  const categoryList = {
+    characters: store.charactersList,
+    films: store.filmsList,
+    species: store.speciesList,
+    starships: store.starshipsList,
+    vehicles: store.vehiclesList,
+    planets: store.planetsList,
+  };
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "60px",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  return (
+    <div className="container-fluid">
+      <div className="row d-flex justify-content-center">
+        <div className="col-sm-12 col-md-10 col-lg-8">
+          <img src={categoryTitle[props.category]} style={{ height: "3rem" }} />
+          <div className="slider-container">
+            <Slider {...settings}>
+              {currentPageData.map((element) => (
+                <Card
+                  key={element.uid + element.name}
+                  category={props.category}
+                  uid={element.uid}
+                  name={
+                    props.category === "films"
+                      ? element.properties.title
+                      : element.name
+                  }
+                />
+              ))}
+            </Slider>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Carousel;
