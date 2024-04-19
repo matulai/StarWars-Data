@@ -82,10 +82,12 @@ const Carousel = (props) => {
     <div className="container-fluid">
       <div className="row d-flex justify-content-center">
         <div className="col-sm-12 col-md-10 col-lg-8">
-          <img
-            src={categoryTitle[props.category]}
-            style={{ height: "2.5rem" }}
-          />
+          <Link to={`/${props.category}`}>
+            <img
+              src={categoryTitle[props.category]}
+              style={{ height: "2.5rem" }}
+            />
+          </Link>
           <div className="slider-container">
             <Slider {...settings}>
               {currentPageData.map((element) => (
@@ -100,7 +102,7 @@ const Carousel = (props) => {
                   }
                   name={
                     props.category === "films"
-                      ? element.properties.title
+                      ? element.properties?.title
                       : element.name
                   }
                 />
