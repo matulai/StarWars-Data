@@ -1,0 +1,17 @@
+.fav-btn {
+  color: rgb(10, 0, 36);
+  &:hover {
+    color: #e0c500;
+  }
+}
+
+.fav {
+  color: #e0c500;
+  &:hover {
+    color: rgb(10, 0, 36);
+  }
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.7);
+}
