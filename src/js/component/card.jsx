@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Img from "./img.jsx";
 import FilmInfo from "./element_info/film_info.jsx";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import "../../styles/card.css";
 
 const Card = (props) => {
   let content = null;
+
+  const [fav, setFav] = useState(false);
+
+  function handleFav() {
+    setFav(!fav);
+  }
 
   switch (props.category) {
     case "films":
@@ -19,11 +28,28 @@ const Card = (props) => {
   }
 
   return (
-    <div className="card mx-2 p-2">
+    <div className="card mx-1 p-2">
       <Img category={props.category} uid={props.uid}></Img>
       {content}
-      <div>
-        <button className="btn btn-primary">Read more</button>
+      <div className="d-flex justify-content-between">
+        <Link to={`/${props.category}/${props.uid}`}>
+          <button className="btn btn-primary">Read more</button>
+        </Link>
+        <button className="btn fav-btn px-0">
+          {fav ? (
+            <Icon
+              className="fs-3 fav"
+              icon="material-symbols:kid-star"
+              onClick={handleFav}
+            />
+          ) : (
+            <Icon
+              className="fs-3"
+              icon="material-symbols:kid-star-outline"
+              onClick={handleFav}
+            />
+          )}
+        </button>
       </div>
     </div>
   );
