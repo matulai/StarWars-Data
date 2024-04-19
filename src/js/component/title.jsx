@@ -4,7 +4,7 @@ import "../../styles/nav.scss";
 
 const Title = () => {
   return (
-    <div className="container-fluid fixed-top p-3 z-index-minus1">
+    <div className="container-fluid p-3 z-index-1">
       <div className="row d-flex justify-content-center">
         <img className="sw-logo" src={Logo}></img>
       </div>
