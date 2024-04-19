@@ -60,6 +60,13 @@ body {
   @include stars-content(4000, #fff, 200, 1, 0.5);
 }
 
+#stars-group-7 {
+  @include stars-content(4000, #fff, 200, 1, 0.6);
+}
+#stars-group-8 {
+  @include stars-content(4000, #fff, 200, 1, 0.7);
+}
+
 @keyframes glowing-stars {
   0% {
     opacity: 0;

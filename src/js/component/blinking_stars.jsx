@@ -11,6 +11,8 @@ const BlinkingStars = () => {
             <div id="stars-group-4"></div>
             <div id="stars-group-5"></div>
             <div id="stars-group-6"></div>
+            <div id="stars-group-7"></div>
+            <div id="stars-group-8"></div>
         </div>
     );
 }
