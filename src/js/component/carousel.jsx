@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CategoryCharacters from "../../img/categories/characters.png";
@@ -46,21 +47,18 @@ const Carousel = (props) => {
   };
 
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 200,
     slidesToShow: 5,
     slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "60px",
+    centerMode: false,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
-          dots: true,
         },
       },
       {
@@ -68,7 +66,6 @@ const Carousel = (props) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 1,
         },
       },
       {
@@ -85,7 +82,10 @@ const Carousel = (props) => {
     <div className="container-fluid">
       <div className="row d-flex justify-content-center">
         <div className="col-sm-12 col-md-10 col-lg-8">
-          <img src={categoryTitle[props.category]} style={{ height: "3rem" }} />
+          <img
+            src={categoryTitle[props.category]}
+            style={{ height: "2.5rem" }}
+          />
           <div className="slider-container">
             <Slider {...settings}>
               {currentPageData.map((element) => (
@@ -93,6 +93,11 @@ const Carousel = (props) => {
                   key={element.uid + element.name}
                   category={props.category}
                   uid={element.uid}
+                  episode_id={
+                    props.category === "films"
+                      ? element.properties.episode_id
+                      : ""
+                  }
                   name={
                     props.category === "films"
                       ? element.properties.title
