@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Img from "./img.jsx";
-import FilmInfo from "./element_info/film_info.jsx";
+import FilmInfo from "./element_info/film_card_info.jsx";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Context } from "../store/appContext";
 import "../../styles/card.css";
