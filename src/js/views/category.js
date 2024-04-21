@@ -1,33 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { Context } from "../store/appContext";
 import CategoryComp from "../component/category.jsx";
+import Pagination from "../component/pagination.jsx";
 
 import "../../styles/category.css";
 
 export const Category = () => {
   const { category } = useParams();
-  const { store, actions } = useContext(Context);
 
   return (
-    <div>
-      <div>
-        <button
-          onClick={() => {
-            actions.getData(category, 1);
-          }}
-        >
-          Next
-        </button>
-        <button
-          onClick={() => {
-            actions.getData(category, -1);
-          }}
-        >
-          Prev
-        </button>
-      </div>
+    <div className="d-flex flex-column">
       <CategoryComp category={category}></CategoryComp>
+      <Pagination category={category}></Pagination>
     </div>
   );
 };

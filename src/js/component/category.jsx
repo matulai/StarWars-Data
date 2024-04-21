@@ -31,7 +31,7 @@ const Category = (props) => {
   return (
     <div className="container-fluid d-flex flex-column align-items-center justify-content-center">
       <div className="col-sm-12 col-md-12 col-lg-9">
-        <div className="row d-flex justify-content-center mb-5">
+        <div className="row d-flex justify-content-center mb-3">
           {currentPageData
             .slice(0, props.category === "films" ? 3 : 5)
             .map((element, index) => (

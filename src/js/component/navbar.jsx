@@ -23,7 +23,7 @@ export const Navbar = () => {
         </div>
       </div>
 
-      <nav className={isNavVisible ? "show" : ""}>
+      <nav className={`${isNavVisible ? "show" : ""} sw-nav`}>
         <ul>
           <li>
             <Link to="/">Home</Link>
