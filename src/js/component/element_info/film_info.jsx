@@ -3,7 +3,7 @@ import { Context } from "../../store/appContext";
 import Img from "../img.jsx";
 
 const FilmInfo = (props) => {
-  const { store, actions } = useContext(Context);
+  const { actions } = useContext(Context);
   const [info, setInfo] = useState({});
 
   useEffect(() => {
