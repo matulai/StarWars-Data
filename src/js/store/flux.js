@@ -84,9 +84,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       setFav: (name, fav) => {
-        if (fav)
-          return setStore({ favorites: [...getStore().favorites, name] });
-        else {
+        if (fav) {
+          if (!getStore().favorites.includes(name))
+            return setStore({ favorites: [...getStore().favorites, name] });
+        } else {
           const updatedFav = getStore().favorites.filter(
             (element) => element !== name
           );

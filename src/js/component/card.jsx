@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Img from "./img.jsx";
 import FilmInfo from "./element_info/film_info.jsx";
@@ -9,7 +9,7 @@ import "../../styles/card.css";
 const Card = (props) => {
   let content = null;
 
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const [fav, setFav] = useState(false);
 
   function handleFav() {
@@ -29,6 +29,10 @@ const Card = (props) => {
       );
       break;
   }
+
+  useEffect(() => {
+    if (store.favorites.includes(props.name || props.title)) handleFav();
+  }, []);
 
   return (
     <div className="card mx-1 p-2">
