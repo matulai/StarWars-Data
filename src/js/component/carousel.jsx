@@ -14,11 +14,10 @@ import { Context } from "../store/appContext";
 
 const Carousel = (props) => {
   const { store } = useContext(Context);
-  const [currentPageData, setCurrentPageData] = useState([]);
+  const [firstPageData, setFirstPageData] = useState([]);
 
   useEffect(() => {
-    const currentPageNumber = store.currentPage[props.category];
-    setCurrentPageData(categoryList[props.category][currentPageNumber] || []);
+    setFirstPageData(categoryList[props.category][1] || []);
   }, [
     store.charactersList,
     store.filmsList,
@@ -90,7 +89,7 @@ const Carousel = (props) => {
           </Link>
           <div className="slider-container">
             <Slider {...settings}>
-              {currentPageData.map((element) => (
+              {firstPageData.map((element) => (
                 <Card
                   key={element.uid + element.name}
                   category={props.category}
