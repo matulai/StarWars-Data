@@ -1,6 +1,6 @@
 import React from "react";
 
-const FilmInfo = (props) => {
+const FilmCardInfo = (props) => {
   return (
     <div className="text-center">
       <h4>Episode {props.episode_id}:</h4>
@@ -9,4 +9,4 @@ const FilmInfo = (props) => {
   );
 };
 
-export default FilmInfo;
+export default FilmCardInfo;
