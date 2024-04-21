@@ -17,14 +17,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       starshipsList: {},
       vehiclesList: {},
       planetsList: {},
+      favorites: [],
     },
 
     actions: {
       getData: (category, direction = 0, toPage = false) => {
+        // api has "people" category but i use "characters" instead
         let people = null;
         if (category === "characters") people = "people";
 
         const store = getStore();
+
         const page = toPage
           ? direction
           : getActions().validPage(
@@ -32,14 +35,6 @@ const getState = ({ getStore, getActions, setStore }) => {
               category
             );
 
-        console.log(
-          page,
-          store.totalPages[category],
-          getActions().validPage(
-            store.currentPage[category] + direction,
-            category
-          )
-        );
         if (
           page === store.currentPage[category] &&
           Object.keys(store[`${category}List`]).length !== 0
@@ -59,9 +54,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       validPage: (page, category) => {
+        const parsedTotalPages = parseInt(getStore().totalPages[category]);
         if (page < 1) return 1;
-        if (page > parseInt(getStore().totalPages[category]))
-          return parseInt(getStore().totalPages[category]);
+        if (page > parsedTotalPages) return parsedTotalPages;
         return page;
       },
 
@@ -86,6 +81,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         const updatedList = { ...store[`${category}List`], [page]: info };
         setStore({ [`${category}List`]: updatedList });
+      },
+
+      setFav: (name, fav) => {
+        if (fav)
+          return setStore({ favorites: [...getStore().favorites, name] });
+        else {
+          const updatedFav = getStore().favorites.filter(
+            (element) => element !== name
+          );
+          return setStore({ favorites: updatedFav });
+        }
       },
     },
   };

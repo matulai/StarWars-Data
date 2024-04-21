@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Img from "./img.jsx";
 import FilmInfo from "./element_info/film_info.jsx";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { Context } from "../store/appContext";
 import "../../styles/card.css";
 
 const Card = (props) => {
   let content = null;
 
+  const { actions } = useContext(Context);
   const [fav, setFav] = useState(false);
 
   function handleFav() {
     setFav(!fav);
+    actions.setFav(props.name, !fav);
   }
 
   switch (props.category) {
