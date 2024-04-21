@@ -1,7 +1,7 @@
 import React from "react";
 import images from "../images";
 
-const MyComponent = ({ category, uid }) => {
+const Img = ({ category, uid }) => {
   const prefix =
     category === "starships"
       ? "st"
@@ -14,4 +14,4 @@ const MyComponent = ({ category, uid }) => {
   return <img src={images[imageName]} alt={`Image ${uid}`} />;
 };
 
-export default MyComponent;
+export default Img;
