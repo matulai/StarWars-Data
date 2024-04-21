@@ -34,6 +34,10 @@ const Card = (props) => {
     if (store.favorites.includes(props.name || props.title)) handleFav();
   }, []);
 
+  useEffect(() => {
+    if (fav && !store.favorites.includes(props.name)) setFav(false);
+  }, [store.favorites]);
+
   return (
     <div className="card mx-1 p-2">
       <Img category={props.category} uid={props.uid}></Img>

@@ -94,6 +94,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           return setStore({ favorites: updatedFav });
         }
       },
+
+      setFavList: (list) => {
+        setStore({ favorites: list });
+      },
     },
   };
 };

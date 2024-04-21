@@ -22,6 +22,11 @@ const injectContext = (PassedComponent) => {
     );
 
     useEffect(() => {
+      if (window.localStorage.getItem("favs")) {
+        state.actions.setFavList(
+          JSON.parse(window.localStorage.getItem("favs"))
+        );
+      }
       state.actions.getData("characters");
       state.actions.getData("films");
       state.actions.getData("species");
@@ -29,6 +34,13 @@ const injectContext = (PassedComponent) => {
       state.actions.getData("starships");
       state.actions.getData("planets");
     }, []);
+
+    useEffect(() => {
+      window.localStorage.setItem(
+        "favs",
+        JSON.stringify(state.store.favorites)
+      );
+    }, [state.store.favorites]);
 
     return (
       <Context.Provider value={state}>
