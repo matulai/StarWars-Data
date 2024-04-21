@@ -5,7 +5,7 @@
 }
 
 .z-index1 {
-  z-index: 1;
+  z-index: 2;
 }
 
 $icon-size: 80px;
@@ -26,7 +26,7 @@ $w: 300px;
 }
 
 #container {
-  z-index: 2;
+  z-index: 3;
   width: $icon-size;
   height: $icon-size;
   position: fixed;
@@ -131,6 +131,7 @@ $w: 300px;
   &.show {
     transform: translatex(0%);
   }
+  z-index: 1;
   font-family: Open Sans;
   color: white;
   position: fixed;
