@@ -41,8 +41,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         setStore({ currentPage: updatedCurrentPage });
 
-        console.log(store.currentPage);
-
         if (
           store[`${category}List`][page] &&
           Object.keys(store[`${category}List`][page])?.length !== 0
@@ -99,6 +97,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       setFavList: (list) => {
         setStore({ favorites: list });
+      },
+
+      getSingleData: (category, uid) => {
+        let info = null;
+        let people = null;
+        if (category === "characters") people = "people";
+
+        return fetch(`https://www.swapi.tech/api/${people || category}/${uid}`)
+          .then((response) => response.json())
+          .then((data) => {
+            info = data.result;
+            getActions().findElementByID(category, uid, info);
+            return info;
+          })
+          .catch((error) => console.error(error));
+      },
+
+      findElementByID: (category, id, info) => {
+        for (const page of Object.values(getStore()[`${category}List`])) {
+          const element = Object.values(page).find((elem) => elem.uid === id);
+          if (element) return info ? { ...element, info: info } : element;
+        }
+        return null;
       },
     },
   };
