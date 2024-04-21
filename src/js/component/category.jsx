@@ -26,6 +26,7 @@ const Category = (props) => {
     store.starshipsList,
     store.planetsList,
     props.category,
+    store.currentPage[props.category],
   ]);
 
   return (

@@ -35,9 +35,17 @@ const getState = ({ getStore, getActions, setStore }) => {
               category
             );
 
+        const updatedCurrentPage = {
+          ...store.currentPage,
+          [category]: page,
+        };
+        setStore({ currentPage: updatedCurrentPage });
+
+        console.log(store.currentPage);
+
         if (
-          page === store.currentPage[category] &&
-          Object.keys(store[`${category}List`]).length !== 0
+          store[`${category}List`][page] &&
+          Object.keys(store[`${category}List`][page])?.length !== 0
         )
           return;
 
@@ -62,12 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       setStoreData: (category, page, data) => {
         const store = getStore();
-
-        const updatedCurrentPage = {
-          ...store.currentPage,
-          [category]: page,
-        };
-        setStore({ currentPage: updatedCurrentPage });
 
         if (!store.totalPages[category]) {
           const updatedTotalPages = {
