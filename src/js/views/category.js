@@ -11,7 +11,7 @@ export const Category = () => {
   return (
     <div className="d-flex flex-column">
       <CategoryComp category={category}></CategoryComp>
-      <Pagination category={category}></Pagination>
+      {category !== "films" && <Pagination category={category}></Pagination>}
     </div>
   );
 };
