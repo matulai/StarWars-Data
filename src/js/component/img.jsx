@@ -11,7 +11,9 @@ const Img = ({ category, uid }) => {
 
   const imageName = `${prefix}${uid}`;
 
-  return <img src={images[imageName]} alt={`Image ${uid}`} />;
+  return (
+    <img className="img-fluid" src={images[imageName]} alt={`Image ${uid}`} />
+  );
 };
 
 export default Img;

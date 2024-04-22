@@ -14,30 +14,52 @@ export const Single = () => {
 
   switch (category) {
     case "films":
-      content = <FilmInfo category={category} uid={theid} />;
+      content = (
+        <div className="col-sm-12 col-md-10 col-lg-8">
+          <FilmInfo category={category} uid={theid} />
+        </div>
+      );
       break;
     case "characters":
-      content = <CharacterInfo category={category} uid={theid} />;
+      content = (
+        <div className="col-sm-12 col-md-10 col-lg-8">
+          <CharacterInfo category={category} uid={theid} />
+        </div>
+      );
       break;
     case "planets":
-      content = <PlanetInfo category={category} uid={theid} />;
+      content = (
+        <div className="w-auto">
+          <PlanetInfo category={category} uid={theid} />
+        </div>
+      );
       break;
     case "species":
-      content = <SpeciesInfo category={category} uid={theid} />;
+      content = (
+        <div className="col-sm-12 col-md-10 col-lg-8">
+          <SpeciesInfo category={category} uid={theid} />
+        </div>
+      );
       break;
     case "starships":
-      content = <StarshipInfo category={category} uid={theid} />;
+      content = (
+        <div className="w-auto">
+          <StarshipInfo category={category} uid={theid} />
+        </div>
+      );
       break;
     case "vehicles":
-      content = <VehicleInfo category={category} uid={theid} />;
+      content = (
+        <div className="w-auto">
+          <VehicleInfo category={category} uid={theid} />
+        </div>
+      );
       break;
   }
 
   return (
-    <div className="container-fluid">
-      <div className="row d-flex justify-content-center">
-        <div className="col-sm-12 col-md-10 col-lg-8">{content}</div>
-      </div>
+    <div className="container">
+      <div className="row d-flex justify-content-center">{content}</div>
     </div>
   );
 };

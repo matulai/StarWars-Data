@@ -16,12 +16,12 @@ const VehicleInfo = (props) => {
   }, []);
 
   return (
-    <div className="card w-100">
-      <div className="row d-flex p-2">
-        <div className="col-auto">
+    <div className="card">
+      <div className="d-flex flex-column p-2">
+        <div>
           <Img category={props.category} uid={props.uid}></Img>
         </div>
-        <div className="col d-flex flex-column">
+        <div className="d-flex flex-column">
           <div className="text-center">
             <h1>{info.name}</h1>
             <hr />

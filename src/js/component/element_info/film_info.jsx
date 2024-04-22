@@ -16,12 +16,12 @@ const FilmInfo = (props) => {
   }, []);
 
   return (
-    <div className="card w-100">
+    <div className="card">
       <div className="row d-flex p-2">
-        <div className="col-auto">
+        <div className="col-6">
           <Img category={props.category} uid={props.uid}></Img>
         </div>
-        <div className="col d-flex flex-column justify-content-between">
+        <div className="col-6 d-flex flex-column justify-content-between">
           <div className="text-center">
             <h2>Episode {info.properties?.episode_id}:</h2>
             <h1 className="fw-lighter lh-sm">{info.properties?.title}</h1>

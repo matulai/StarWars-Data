@@ -19,13 +19,13 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div>
+    <div className="d-flex flex-column h-100">
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <BlinkingStars></BlinkingStars>
           <Navbar />
           <Title></Title>
-          <div className="margin-content">
+          <div className="flex-grow-1">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/:category" element={<Category />} />

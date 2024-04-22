@@ -25,12 +25,12 @@ const SpeciesInfo = (props) => {
   }, []);
 
   return (
-    <div className="card w-100">
+    <div className="card">
       <div className="row d-flex p-2">
-        <div className="col-auto">
+        <div className="col-6">
           <Img category={props.category} uid={props.uid}></Img>
         </div>
-        <div className="col d-flex flex-column">
+        <div className="col-6 d-flex flex-column">
           <div className="text-center">
             <h1>{info.name}</h1>
             <hr />
