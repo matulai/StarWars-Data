@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../img/Star_Wars_logo.png";
 import Favorites from "./favorites.jsx";
+import Search from "./search.jsx";
 import "../../styles/nav.scss";
 
 const Title = () => {
@@ -15,6 +16,7 @@ const Title = () => {
           </Link>
         </div>
         <div className="col-4 d-flex justify-content-end">
+          <Search></Search>
           <Favorites></Favorites>
         </div>
       </div>
