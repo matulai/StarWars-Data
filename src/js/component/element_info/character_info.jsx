@@ -13,9 +13,11 @@ const CharacterInfo = (props) => {
       const data = await actions.getSingleData(props.category, props.uid);
       setInfo(data.properties);
 
-      const homeworldID =
-        data.properties.homeworld[data.properties.homeworld.length - 1];
-      const homeworldData = await actions.getSingleData("planets", homeworldID);
+      const homeworldArr = data.properties.homeworld.split("/");
+      const homeworldData = await actions.getSingleData(
+        "planets",
+        homeworldArr[homeworldArr.length - 1]
+      );
       setHomeworld(homeworldData);
     };
 
@@ -67,8 +69,8 @@ const CharacterInfo = (props) => {
             </span>
             <span>
               <b>Homeworld:</b>{" "}
-              <Link to={`/planets/${homeworld.uid}`}>
-                {homeworld.properties?.name}
+              <Link to={`/planets/${homeworld?.uid}`}>
+                {homeworld?.properties?.name}
               </Link>
             </span>
             <span>
