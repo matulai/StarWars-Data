@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/search.css";
 import { useLocation } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const Search = () => {
   const location = useLocation();
@@ -9,8 +10,18 @@ const Search = () => {
     location.pathname === "/starships" ||
     location.pathname === "/species" ||
     location.pathname === "/vehicles" ||
-    location.pathname === "/planets" ||
-    location.pathname === "/films";
+    location.pathname === "/planets";
+
+  const { actions } = useContext(Context);
+  const [inputValue, setInputValue] = useState("");
+
+  function handleInputChange(event) {
+    const value = event.target.value;
+    setInputValue(value);
+    const category = location.pathname.split("/")[1];
+    actions.search(category, value);
+    actions.setSearching(value.length > 0);
+  }
 
   return (
     visible && (
@@ -20,6 +31,8 @@ const Search = () => {
           name="text"
           className="input"
           placeholder="Search something..."
+          value={inputValue}
+          onChange={handleInputChange}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"

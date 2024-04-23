@@ -18,6 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       vehiclesList: {},
       planetsList: {},
       favorites: [],
+      searchResult: [],
+      searching: false,
     },
 
     actions: {
@@ -120,6 +122,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (element) return info ? { ...element, info: info } : element;
         }
         return null;
+      },
+
+      search: (category, searchValue) => {
+        if (searchValue.length > 0) {
+          let people = null;
+          if (category === "characters") people = "people";
+
+          fetch(
+            `https://www.swapi.tech/api/${
+              people || category
+            }/?name=${searchValue}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              setStore({ searchResult: data.result });
+            })
+            .catch((error) => console.error(error));
+        } else setStore({ searchResult: [] });
+      },
+
+      setSearching: (value) => {
+        setStore({ searching: value });
       },
     },
   };
