@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/search.css";
 import { useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
@@ -22,6 +22,10 @@ const Search = () => {
     actions.search(category, value);
     actions.setSearching(value.length > 0);
   }
+
+  useEffect(() => {
+    setInputValue("");
+  }, [location.pathname]);
 
   return (
     visible && (
