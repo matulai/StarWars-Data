@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const Img = ({ category, uid }) => {
   const prefix =
@@ -9,20 +9,17 @@ const Img = ({ category, uid }) => {
       : category[0];
   const imageName = `${prefix}${uid}`;
 
-  const [image, setImage] = useState(null);
+  console.log(
+    `https://github.com/BlondyMartinez/StarWars-Wiki/blob/master/src/img/${category}/${imageName}.jpg?raw=true`
+  );
 
-  useEffect(() => {
-    const loadImage = async () => {
-      const imageModule = await import(
-        `../../img/${category}/${imageName}.jpg`
-      );
-      setImage(imageModule.default);
-    };
-
-    loadImage();
-  }, [imageName]);
-
-  return <img className="img-fluid" src={image} alt={`Image ${uid}`} />;
+  return (
+    <img
+      className="img-fluid"
+      src={`https://github.com/BlondyMartinez/StarWars-Wiki/blob/master/src/img/${category}/${imageName}.jpg?raw=true`}
+      alt={`Image ${uid}`}
+    />
+  );
 };
 
 export default Img;
