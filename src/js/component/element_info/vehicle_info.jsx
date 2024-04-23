@@ -65,12 +65,15 @@ const VehicleInfo = (props) => {
             <li>
               <span>
                 <b>Max Speed:</b> {info.max_atmosphering_speed}{" "}
-                {info.max_atmosphering_speed !== "n/a" ? "km/h" : ""}
+                {info.max_atmosphering_speed?.toLowerCase() !== "n/a"
+                  ? "km/h"
+                  : ""}
               </span>
             </li>
             <li>
               <span>
-                <b>Cargo Capacity:</b> {info.cargo_capacity}t
+                <b>Cargo Capacity:</b> {info.cargo_capacity}
+                {info.cargo_capacity?.toLowerCase() !== "n/a" ? "t" : ""}
               </span>
             </li>
             <li>

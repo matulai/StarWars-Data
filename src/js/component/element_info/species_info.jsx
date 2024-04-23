@@ -63,12 +63,14 @@ const SpeciesInfo = (props) => {
             </li>
             <li>
               <span>
-                <b>Average Height:</b> {info.average_height}cm
+                <b>Average Height:</b> {info.average_height}
+                {info.average_height?.toLowerCase() !== "n/a" ? "cm" : ""}
               </span>
             </li>
             <li>
               <span>
-                <b>Average Lifespan:</b> {info.average_lifespan} years
+                <b>Average Lifespan:</b> {info.average_lifespan}{" "}
+                {info.average_lifespan?.toLowerCase() !== "n/a" ? "years" : ""}
               </span>
             </li>
             <li>

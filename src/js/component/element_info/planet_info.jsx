@@ -29,17 +29,29 @@ const PlanetInfo = (props) => {
           <ul>
             <li>
               <span>
-                <b>Diameter:</b> {info.diameter}km
+                <b>Diameter:</b> {info.diameter}
+                {info.diameter?.toLowerCase() !== "n/a" &&
+                info.diameter?.toLowerCase() !== "unknown"
+                  ? "km"
+                  : ""}
               </span>
             </li>
             <li>
               <span>
-                <b>Rotation Period:</b> {info.rotation_period}h
+                <b>Rotation Period:</b> {info.rotation_period}
+                {info.rotation_period?.toLowerCase() !== "n/a" &&
+                info.rotation_period?.toLowerCase() !== "unknown"
+                  ? "h"
+                  : ""}
               </span>
             </li>
             <li>
               <span>
-                <b>Orbital Period:</b> {info.orbital_period} standard days
+                <b>Orbital Period:</b> {info.orbital_period}
+                {info.orbital_period?.toLowerCase() !== "n/a" &&
+                info.orbital_period?.toLowerCase() !== "unknown"
+                  ? " standard days"
+                  : ""}
               </span>
             </li>
             <li>
@@ -64,7 +76,11 @@ const PlanetInfo = (props) => {
             </li>
             <li>
               <span>
-                <b>Surface of Water:</b> {info.surface_water}%
+                <b>Surface of Water:</b> {info.surface_water}
+                {info.surface_water?.toLowerCase() !== "n/a" &&
+                info.surface_water?.toLowerCase() !== "unknown"
+                  ? "%"
+                  : ""}
               </span>
             </li>
           </ul>
