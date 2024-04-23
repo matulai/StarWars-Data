@@ -81,7 +81,6 @@ const injectContext = (PassedComponent) => {
         state.store.starshipsList,
         state.store.planetsList,
       ];
-      console.log(fetchedData);
       window.localStorage.setItem("fetchedData", JSON.stringify(fetchedData));
     }, [
       state.store.charactersList,
