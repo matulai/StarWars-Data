@@ -20,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
       searchResult: [],
       searching: false,
-      isMobbile: window.matchMedia("(max-width: 1024px)").matches,
+      isMobile: window.matchMedia("(max-width: 1024px)").matches,
     },
 
     actions: {

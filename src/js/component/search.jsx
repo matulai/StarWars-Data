@@ -12,7 +12,7 @@ const Search = () => {
     location.pathname === "/vehicles" ||
     location.pathname === "/planets";
 
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const [inputValue, setInputValue] = useState("");
 
   function handleInputChange(event) {
@@ -33,7 +33,7 @@ const Search = () => {
         <input
           type="text"
           name="text"
-          className="input"
+          className={`input ${store.isMobile ? "mobile" : "pc"}`}
           placeholder="Search something..."
           value={inputValue}
           onChange={handleInputChange}

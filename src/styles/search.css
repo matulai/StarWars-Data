@@ -2,6 +2,14 @@
   position: relative;
 }
 
+.mobile {
+  --input-width: 150px;
+}
+
+.pc {
+  --input-width: 290px;
+}
+
 .input {
   width: 40px;
   height: 40px;
@@ -26,7 +34,7 @@
 .input:not(:placeholder-shown) {
   background-color: #fff;
   border: 1px solid #ffc400;
-  width: 290px;
+  width: var(--input-width);
   cursor: none;
   padding: 18px 16px 18px 45px;
 }

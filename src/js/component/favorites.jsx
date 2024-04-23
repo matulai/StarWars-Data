@@ -13,7 +13,7 @@ const Favorites = () => {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        Favorites{" "}
+        <Icon className="fs-3" icon="material-symbols:kid-star-outline" />{" "}
         <span className="badge bg-light text-dark">
           {store.favorites.length}
         </span>

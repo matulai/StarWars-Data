@@ -57,7 +57,7 @@ const injectContext = (PassedComponent) => {
 
       // add listener to detect size changes
       const mediaQuery = window.matchMedia("(max-width: 1024px)");
-      const listener = () => setStore({ isMobile: mediaQuery.matches });
+      const listener = () => (state.store.isMobile = mediaQuery.matches);
 
       mediaQuery.addEventListener("change", listener);
 
