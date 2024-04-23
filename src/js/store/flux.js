@@ -20,17 +20,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
       searchResult: [],
       searching: false,
+      isMobbile: window.matchMedia("(max-width: 1024px)").matches,
     },
 
     actions: {
-      getData: (category, direction = 0, toPage = false) => {
+      getData: (category, direction = 0, isToPage = false) => {
         // api has "people" category but i use "characters" instead
         let people = null;
         if (category === "characters") people = "people";
 
         const store = getStore();
 
-        const page = toPage
+        // calculate the page to fetch based on direction or set to a specific page
+        const page = isToPage
           ? direction
           : getActions().validPage(
               store.currentPage[category] + direction,
@@ -43,6 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         setStore({ currentPage: updatedCurrentPage });
 
+        // if the data we want already exists, return
         if (
           store[`${category}List`][page] &&
           Object.keys(store[`${category}List`][page])?.length !== 0
@@ -80,7 +83,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
 
         const info = category === "films" ? data.result : data.results;
-
         const updatedList = { ...store[`${category}List`], [page]: info };
         setStore({ [`${category}List`]: updatedList });
       },

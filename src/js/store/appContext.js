@@ -22,17 +22,47 @@ const injectContext = (PassedComponent) => {
     );
 
     useEffect(() => {
+      console.log("holi");
+      // get favorites from localstorage
       if (window.localStorage.getItem("favs")) {
         state.actions.setFavList(
           JSON.parse(window.localStorage.getItem("favs"))
         );
       }
-      state.actions.getData("characters");
-      state.actions.getData("films");
-      state.actions.getData("species");
-      state.actions.getData("vehicles");
-      state.actions.getData("starships");
-      state.actions.getData("planets");
+
+      // get data from localstorage or fetch
+      if (window.localStorage.getItem("fetchedData")) {
+        const fetchedData = JSON.parse(
+          window.localStorage.getItem("fetchedData")
+        );
+        const totalPages = JSON.parse(
+          window.localStorage.getItem("totalPages")
+        );
+
+        state.store.charactersList = fetchedData[0];
+        state.store.filmsList = fetchedData[1];
+        state.store.speciesList = fetchedData[2];
+        state.store.vehiclesList = fetchedData[3];
+        state.store.starshipsList = fetchedData[4];
+        state.store.planetsList = fetchedData[5];
+        state.store.totalPages = totalPages;
+      } else {
+        //fetch first page of each category
+        state.actions.getData("characters");
+        state.actions.getData("films");
+        state.actions.getData("species");
+        state.actions.getData("vehicles");
+        state.actions.getData("starships");
+        state.actions.getData("planets");
+      }
+
+      // add listener to detect size changes
+      const mediaQuery = window.matchMedia("(max-width: 1024px)");
+      const listener = () => setStore({ isMobile: mediaQuery.matches });
+
+      mediaQuery.addEventListener("change", listener);
+
+      return () => mediaQuery.removeEventListener("change", listener);
     }, []);
 
     useEffect(() => {
@@ -41,6 +71,33 @@ const injectContext = (PassedComponent) => {
         JSON.stringify(state.store.favorites)
       );
     }, [state.store.favorites]);
+
+    useEffect(() => {
+      const fetchedData = [
+        state.store.charactersList,
+        state.store.filmsList,
+        state.store.speciesList,
+        state.store.vehiclesList,
+        state.store.starshipsList,
+        state.store.planetsList,
+      ];
+      console.log(fetchedData);
+      window.localStorage.setItem("fetchedData", JSON.stringify(fetchedData));
+    }, [
+      state.store.charactersList,
+      state.store.filmsList,
+      state.store.speciesList,
+      state.store.vehiclesList,
+      state.store.starshipsList,
+      state.store.planetsList,
+    ]);
+
+    useEffect(() => {
+      window.localStorage.setItem(
+        "totalPages",
+        JSON.stringify(state.store.totalPages)
+      );
+    }, [state.store.totalPages]);
 
     return (
       <Context.Provider value={state}>
