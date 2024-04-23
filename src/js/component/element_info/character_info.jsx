@@ -27,16 +27,16 @@ const CharacterInfo = (props) => {
   return (
     <div className="card">
       <div className="row d-flex p-2">
-        <div className="col-6">
+        <div className="col-6 mx-auto">
           <Img category={props.category} uid={props.uid}></Img>
         </div>
-        <div className="col-6 d-flex flex-column justify-content-between">
+        <div className="col-lg-6 col-md-11 col-sm-11 d-flex flex-column justify-content-between">
           <div className="text-center">
             <h1>{info.name}</h1>
             <hr />
           </div>
           <div className="d-flex flex-column">
-            <h4 className=" text-center text-decoration-underline">
+            <h4 className="text-center text-decoration-underline">
               Appearance
             </h4>
             <span>
@@ -51,7 +51,7 @@ const CharacterInfo = (props) => {
           </div>
           <hr />
           <div className="d-flex flex-column">
-            <h4 className=" text-center text-decoration-underline">
+            <h4 className="text-center text-decoration-underline">
               Dimensions
             </h4>
             <span>
