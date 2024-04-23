@@ -22,7 +22,6 @@ const injectContext = (PassedComponent) => {
     );
 
     useEffect(() => {
-      console.log("holi");
       // get favorites from localstorage
       if (window.localStorage.getItem("favs")) {
         state.actions.setFavList(
