@@ -9,10 +9,6 @@ const Img = ({ category, uid }) => {
       : category[0];
   const imageName = `${prefix}${uid}`;
 
-  console.log(
-    `https://github.com/BlondyMartinez/StarWars-Wiki/blob/master/src/img/${category}/${imageName}.jpg?raw=true`
-  );
-
   return (
     <img
       className="img-fluid"
