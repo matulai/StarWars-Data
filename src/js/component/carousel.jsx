@@ -54,7 +54,7 @@ const Carousel = (props) => {
     centerMode: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1550,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,

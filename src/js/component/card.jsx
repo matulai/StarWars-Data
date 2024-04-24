@@ -41,26 +41,31 @@ const Card = (props) => {
   return (
     <div className="card mx-1 p-2">
       <Img category={props.category} uid={props.uid}></Img>
-      {content}
-      <div className="d-flex justify-content-between">
-        <Link to={`/${props.category}/${props.uid}`}>
-          <button className="btn btn-primary">Read more</button>
-        </Link>
-        <button className="btn fav-btn px-0">
-          {fav ? (
-            <Icon
-              className="fs-3 fav"
-              icon="material-symbols:kid-star"
-              onClick={handleFav}
-            />
-          ) : (
-            <Icon
-              className="fs-3"
-              icon="material-symbols:kid-star-outline"
-              onClick={handleFav}
-            />
-          )}
-        </button>
+      <div
+        className=" d-flex flex-column justify-content-between"
+        style={{ height: `${props.category === "films" ? "9rem" : "7rem"}` }}
+      >
+        {content}
+        <div className="d-flex justify-content-between">
+          <Link to={`/${props.category}/${props.uid}`}>
+            <button className="btn btn-primary">Read more</button>
+          </Link>
+          <button className="btn fav-btn px-0">
+            {fav ? (
+              <Icon
+                className="fs-3 fav"
+                icon="material-symbols:kid-star"
+                onClick={handleFav}
+              />
+            ) : (
+              <Icon
+                className="fs-3"
+                icon="material-symbols:kid-star-outline"
+                onClick={handleFav}
+              />
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
