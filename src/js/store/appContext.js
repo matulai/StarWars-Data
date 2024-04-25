@@ -55,7 +55,7 @@ const injectContext = (PassedComponent) => {
         state.actions.getData("planets");
       }
 
-      const mediaQueryMobile = window.matchMedia("(max-width: 1024px)");
+      const mediaQueryMobile = window.matchMedia("(max-width: 990px)");
       const mediaQuerySmall = window.matchMedia("(max-width: 1650px)");
 
       const updateState = () => {
