@@ -13,7 +13,11 @@ const Category = (props) => {
             store.searchResult.map((element) => (
               <div
                 key={element.uid + element.name + "search"}
-                className="col-lg-2 col-md-11 col-sm-12 mb-3"
+                className={`${
+                  !store.isSmall || store.isMobile
+                    ? "col-lg-2 col-md-11 col-sm-12"
+                    : "col-4"
+                }  mb-3`}
               >
                 <Card
                   category={props.category}

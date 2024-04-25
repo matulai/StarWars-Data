@@ -6,8 +6,6 @@ const Category = (props) => {
   const { store } = useContext(Context);
   const [currentPageData, setCurrentPageData] = useState([]);
 
-  console.log(store.isSmall, store.isMobile);
-
   const categoryList = {
     characters: store.charactersList,
     films: store.filmsList,
