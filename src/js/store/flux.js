@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       searchResult: [],
       searching: false,
       isMobile: window.matchMedia("(max-width: 1024px)").matches,
+      isSmall: window.matchMedia("(max-width: 1650px)").matches,
     },
 
     actions: {

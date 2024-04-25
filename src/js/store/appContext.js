@@ -55,13 +55,36 @@ const injectContext = (PassedComponent) => {
         state.actions.getData("planets");
       }
 
-      // add listener to detect size changes
-      const mediaQuery = window.matchMedia("(max-width: 1024px)");
-      const listener = () => (state.store.isMobile = mediaQuery.matches);
+      const mediaQueryMobile = window.matchMedia("(max-width: 1024px)");
+      const mediaQuerySmall = window.matchMedia("(max-width: 1650px)");
 
-      mediaQuery.addEventListener("change", listener);
+      const updateState = () => {
+        setState((prevState) => ({
+          ...prevState,
+          store: {
+            ...prevState.store,
+            isMobile: mediaQueryMobile.matches,
+            isSmall: mediaQuerySmall.matches,
+          },
+        }));
+      };
 
-      return () => mediaQuery.removeEventListener("change", listener);
+      const mediaQueryChangeListener = () => {
+        updateState();
+      };
+
+      mediaQueryMobile.addEventListener("change", mediaQueryChangeListener);
+      mediaQuerySmall.addEventListener("change", mediaQueryChangeListener);
+
+      updateState();
+
+      return () => {
+        mediaQueryMobile.removeEventListener(
+          "change",
+          mediaQueryChangeListener
+        );
+        mediaQuerySmall.removeEventListener("change", mediaQueryChangeListener);
+      };
     }, []);
 
     useEffect(() => {
